@@ -1,0 +1,2648 @@
+Dưới đây là toàn bộ mã nguồn hoàn chỉnh của ứng dụng web U1-2 trong 1 file HTML
+duy nhất, tích hợp đầy đủ 96/96 mẫu câu (40 câu Unit 1 + 56 câu Unit 2), bám
+sát 100% nguyên văn tiếng Anh, phiên âm IPA (US), nghĩa tiếng Việt và ngữ cảnh
+từng mục trong tài liệu.
+
+Bạn chỉ cần lưu toàn bộ mã nguồn bên dưới thành file index.html và mở trực tiếp
+trên trình duyệt hoặc đẩy lên GitHub Pages.
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U1-2 | Classroom English Mastery (4 Kỹ Năng)</title>
+  <style>
+    :root {
+      --navy-950: #0b1120;
+      --navy-900: #0f172a;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --emerald-600: #059669;
+      --emerald-500: #10b981;
+      --emerald-50: #ecfdf5;
+      --emerald-200: #a7f3d0;
+      --rose-600: #e11d48;
+      --rose-500: #f43f5e;
+      --rose-50: #fff1f2;
+      --rose-200: #fecdd3;
+      --amber-600: #d97706;
+      --amber-50: #fffbeb;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--slate-100);
+      color: var(--navy-900);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .app-header {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border-bottom: 1px solid var(--navy-800);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: var(--shadow-md);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background-color: var(--white);
+      color: var(--navy-900);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--slate-300);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background-color: var(--navy-800);
+      color: var(--white);
+      border: 1px solid var(--navy-700);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .ctrl-btn:hover {
+      background-color: var(--navy-700);
+    }
+
+    .ctrl-btn.active {
+      background-color: var(--white);
+      color: var(--navy-900);
+      border-color: var(--white);
+    }
+
+    /* Progress Strip */
+    .progress-strip {
+      background-color: var(--navy-800);
+      color: var(--white);
+      border-bottom: 1px solid var(--navy-700);
+    }
+
+    .progress-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.84rem;
+    }
+
+    .progress-bar-wrap {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background-color: var(--navy-900);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--white);
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background-color: var(--navy-900);
+      border: 1px solid var(--navy-700);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--slate-200);
+    }
+
+    .stat-pill strong {
+      color: var(--white);
+    }
+
+    /* Main Container */
+    .main-wrap {
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Filter Bar */
+    .filter-card {
+      background-color: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .select-input {
+      background-color: var(--slate-50);
+      color: var(--navy-900);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .select-input:focus {
+      border-color: var(--navy-900);
+    }
+
+    .filter-count {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      background-color: var(--slate-100);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-200);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      background-color: var(--white);
+      padding: 8px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-btn {
+      background-color: transparent;
+      color: var(--navy-800);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 11px 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      background-color: var(--slate-100);
+    }
+
+    .tab-btn.active {
+      background-color: var(--navy-900);
+      color: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Workspace Panel */
+    .panel {
+      background-color: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .panel-title h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+
+    .panel-title p {
+      font-size: 0.86rem;
+      color: var(--slate-500);
+      margin-top: 2px;
+    }
+
+    .submode-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill-btn {
+      background-color: var(--slate-100);
+      color: var(--navy-800);
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      background-color: var(--slate-200);
+    }
+
+    .pill-btn.active {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border-color: var(--navy-900);
+    }
+
+    /* Common Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--navy-900);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-800);
+    }
+
+    .btn-outline {
+      background-color: var(--white);
+      color: var(--navy-900);
+      border-color: var(--slate-300);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--slate-50);
+      border-color: var(--navy-800);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+
+    .btn-icon {
+      padding: 7px 10px;
+      font-size: 0.82rem;
+    }
+
+    /* Reference Table & Search */
+    .ref-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 10px 14px;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--navy-900);
+    }
+
+    .sentence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sentence-row {
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background-color: var(--white);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .sentence-row:hover {
+      border-color: var(--slate-300);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sentence-row.mastered {
+      border-left: 4px solid var(--emerald-500);
+    }
+
+    .sentence-row.needs-review {
+      border-left: 4px solid var(--rose-500);
+    }
+
+    .row-num {
+      background-color: var(--navy-900);
+      color: var(--white);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: var(--radius-sm);
+      min-width: 58px;
+      text-align: center;
+    }
+
+    .row-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .row-meta {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .row-en {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .row-ipa {
+      font-size: 0.86rem;
+      color: var(--slate-600);
+      font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif;
+    }
+
+    .row-vi {
+      font-size: 0.92rem;
+      color: var(--navy-700);
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .mastery-toggle {
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--slate-300);
+      background-color: var(--slate-50);
+      color: var(--navy-800);
+    }
+
+    .mastery-toggle.is-mastered {
+      background-color: var(--emerald-50);
+      color: var(--emerald-600);
+      border-color: var(--emerald-200);
+    }
+
+    /* Flashcard View */
+    .flashcard-wrap {
+      max-width: 620px;
+      margin: 10px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .flashcard {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      user-select: none;
+      transition: transform 0.15s ease;
+    }
+
+    .flashcard:active {
+      transform: scale(0.99);
+    }
+
+    .flashcard-badge {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--slate-300);
+      background-color: var(--navy-800);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .flashcard-hint {
+      position: absolute;
+      bottom: 14px;
+      font-size: 0.76rem;
+      color: var(--slate-400);
+    }
+
+    .fc-main {
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .fc-ipa {
+      font-size: 1rem;
+      color: var(--slate-300);
+      margin-bottom: 12px;
+    }
+
+    .fc-vi {
+      font-size: 1.15rem;
+      color: var(--emerald-200);
+      font-weight: 600;
+    }
+
+    /* Exercise Area */
+    .exercise-shell {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .exercise-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.84rem;
+      color: var(--slate-600);
+      font-weight: 700;
+    }
+
+    .context-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--slate-100);
+      color: var(--navy-800);
+      border: 1px solid var(--slate-200);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .prompt-box {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .prompt-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--slate-300);
+      font-weight: 700;
+    }
+
+    .prompt-text {
+      font-size: 1.38rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .prompt-sub {
+      font-size: 0.94rem;
+      color: var(--slate-300);
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background-color: var(--white);
+      color: var(--navy-900);
+      border: 2px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.14s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--navy-800);
+      background-color: var(--slate-50);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background-color: var(--slate-100);
+      color: var(--navy-900);
+      font-weight: 800;
+      font-size: 0.84rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .option-btn.correct {
+      background-color: var(--emerald-50);
+      border-color: var(--emerald-500);
+      color: var(--navy-900);
+    }
+
+    .option-btn.correct .option-letter {
+      background-color: var(--emerald-500);
+      color: var(--white);
+    }
+
+    .option-btn.wrong {
+      background-color: var(--rose-50);
+      border-color: var(--rose-500);
+      color: var(--navy-900);
+    }
+
+    .option-btn.wrong .option-letter {
+      background-color: var(--rose-500);
+      color: var(--white);
+    }
+
+    /* Feedback Banner */
+    .feedback-box {
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      border: 1px solid var(--slate-200);
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      animation: fadeSlide 0.2s ease;
+    }
+
+    .feedback-box.show {
+      display: flex;
+    }
+
+    .feedback-box.is-correct {
+      background-color: var(--emerald-50);
+      border-color: var(--emerald-200);
+    }
+
+    .feedback-box.is-wrong {
+      background-color: var(--rose-50);
+      border-color: var(--rose-200);
+    }
+
+    .feedback-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-box.is-correct .feedback-title {
+      color: var(--emerald-600);
+    }
+
+    .feedback-box.is-wrong .feedback-title {
+      color: var(--rose-600);
+    }
+
+    .feedback-detail {
+      font-size: 0.9rem;
+      color: var(--navy-800);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .exercise-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Dictation & Writing Inputs */
+    .text-input-lg {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .text-input-lg:focus {
+      border-color: var(--navy-900);
+    }
+
+    .cloze-sentence {
+      font-size: 1.28rem;
+      font-weight: 700;
+      line-height: 1.6;
+      background-color: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      color: var(--navy-900);
+    }
+
+    .cloze-blank {
+      display: inline-block;
+      min-width: 110px;
+      border-bottom: 3px solid var(--navy-900);
+      padding: 0 8px;
+      margin: 0 4px;
+      color: var(--navy-800);
+      text-align: center;
+    }
+
+    /* Word Scramble */
+    .answer-tray {
+      min-height: 68px;
+      background-color: var(--slate-50);
+      border: 2px dashed var(--slate-300);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 0;
+    }
+
+    .word-chip {
+      background-color: var(--white);
+      color: var(--navy-900);
+      border: 2px solid var(--navy-800);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      user-select: none;
+    }
+
+    .word-chip:hover {
+      background-color: var(--navy-900);
+      color: var(--white);
+    }
+
+    .word-chip.in-tray {
+      background-color: var(--navy-900);
+      color: var(--white);
+    }
+
+    .word-chip.used {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    /* Speaking UI */
+    .mic-btn {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--navy-900);
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
+    }
+
+    .mic-btn:hover {
+      background-color: var(--navy-800);
+      transform: scale(1.04);
+    }
+
+    .mic-btn.recording {
+      background-color: var(--rose-600);
+      animation: pulse 1.2s infinite;
+    }
+
+    .speech-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      background-color: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .word-diff {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .diff-ok {
+      background-color: var(--emerald-50);
+      color: var(--emerald-600);
+      border: 1px solid var(--emerald-200);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .diff-miss {
+      background-color: var(--rose-50);
+      color: var(--rose-600);
+      border: 1px solid var(--rose-200);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: var(--slate-600);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5); }
+      70% { box-shadow: 0 0 0 16px rgba(225, 29, 72, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
+
+    @media (max-width: 820px) {
+      .nav-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-tabs .tab-btn:first-child {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .panel {
+        padding: 16px;
+      }
+      .sentence-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .row-num {
+        width: fit-content;
+      }
+      .prompt-text {
+        font-size: 1.18rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-badge">U1-2</div>
+        <div class="brand-text">
+          <h1>Classroom English Mastery</h1>
+          <p>Unit 1: Welcoming Students (40) &bull; Unit 2: Greeting Individually (56)</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="speedBtn" class="ctrl-btn" title="Tốc độ phát âm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="speedLabel">Tốc độ: 1.0x</span>
+        </button>
+        <button id="soundBtn" class="ctrl-btn active" title="Bật/tắt hiệu ứng âm thanh">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <span id="soundLabel">Âm thanh: Bật</span>
+        </button>
+        <button id="resetBtn" class="ctrl-btn" title="Đặt lại tiến độ học">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span>Đặt lại</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Strip -->
+  <div class="progress-strip">
+    <div class="progress-inner">
+      <div class="progress-bar-wrap">
+        <span style="font-weight:700; white-space:nowrap;">Tiến độ ghi nhớ</span>
+        <div class="progress-track">
+          <div id="globalProgressFill" class="progress-fill"></div>
+        </div>
+        <span id="globalProgressPct" style="font-weight:800;">0%</span>
+      </div>
+      <div class="stats-pills">
+        <span class="stat-pill">Tổng kho: <strong id="statTotal">96</strong></span>
+        <span class="stat-pill">Đã thuộc: <strong id="statMastered">0</strong></span>
+        <span class="stat-pill">Cần ôn / Sai: <strong id="statReview">0</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="main-wrap">
+    <!-- Filter Bar -->
+    <section class="filter-card">
+      <div class="filter-group">
+        <span class="filter-label">Bộ lọc:</span>
+        <select id="unitFilter" class="select-input" aria-label="Lọc theo Unit">
+          <option value="all">Tất cả Unit (96 câu)</option>
+          <option value="1">Unit 1: Welcoming Students (40 câu)</option>
+          <option value="2">Unit 2: Greeting Individually (56 câu)</option>
+        </select>
+
+        <select id="sectionFilter" class="select-input" aria-label="Lọc theo Mục">
+          <option value="all">Tất cả các mục</option>
+        </select>
+
+        <select id="masteryFilter" class="select-input" aria-label="Lọc theo Trạng thái">
+          <option value="all">Tất cả trạng thái</option>
+          <option value="unmastered">Các câu làm sai / chưa thuộc</option>
+          <option value="mastered">Các câu đã thuộc</option>
+        </select>
+      </div>
+      <div class="filter-count" id="filteredCountBadge">Đang chọn: 96 câu</div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Chế độ luyện tập">
+      <button class="tab-btn active" data-tab="reference">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Kho Câu & Flashcard</span>
+      </button>
+      <button class="tab-btn" data-tab="reading">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span>Đọc (Reading)</span>
+      </button>
+      <button class="tab-btn" data-tab="listening">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        <span>Nghe (Listening)</span>
+      </button>
+      <button class="tab-btn" data-tab="speaking">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <span>Nói (Speaking)</span>
+      </button>
+      <button class="tab-btn" data-tab="writing">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span>Viết (Writing)</span>
+      </button>
+    </nav>
+
+    <!-- Dynamic Panel -->
+    <section id="workspacePanel" class="panel"></section>
+  </main>
+
+  <footer class="footer">
+    Ứng dụng học tập <strong>U1-2</strong> &bull; Dữ liệu đầy đủ 100% (96 mẫu câu Unit 1 & Unit 2) &bull; Lưu tiến độ tự động trên trình duyệt
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. COMPLETE DATASET: 100% OF UNIT 1 (40) + UNIT 2 (56) = 96 SENTENCES
+    // =========================================================================
+    const SENTENCES = [
+      // ---------------- UNIT 1: WELCOMING STUDENTS (40) ----------------
+      // Section A: Chào học sinh khi bước vào lớp (1-10)
+      { id: "u1_1", unit: 1, unitName: "Unit 1: Welcoming Students", num: 1, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Good morning, everyone!", ipa: "/ɡʊd ˈmɔrnɪŋ ˈɛvriˌwʌn/", vi: "Chào buổi sáng cả lớp!" },
+      { id: "u1_2", unit: 1, unitName: "Unit 1: Welcoming Students", num: 2, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Good afternoon, everyone!", ipa: "/ɡʊd ˌæftərˈnun ˈɛvriˌwʌn/", vi: "Chào buổi chiều cả lớp!" },
+      { id: "u1_3", unit: 1, unitName: "Unit 1: Welcoming Students", num: 3, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Hello, everyone!", ipa: "/həˈloʊ ˈɛvriˌwʌn/", vi: "Xin chào cả lớp!" },
+      { id: "u1_4", unit: 1, unitName: "Unit 1: Welcoming Students", num: 4, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Hi, everyone!", ipa: "/haɪ ˈɛvriˌwʌn/", vi: "Chào cả lớp!" },
+      { id: "u1_5", unit: 1, unitName: "Unit 1: Welcoming Students", num: 5, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Welcome to class!", ipa: "/ˈwɛlkəm tə klæs/", vi: "Chào mừng các em đến lớp!" },
+      { id: "u1_6", unit: 1, unitName: "Unit 1: Welcoming Students", num: 6, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Come on in!", ipa: "/kʌm ɑn ɪn/", vi: "Vào lớp đi các em!" },
+      { id: "u1_7", unit: 1, unitName: "Unit 1: Welcoming Students", num: 7, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "Come in and have a seat.", ipa: "/kʌm ɪn ən hæv ə sit/", vi: "Vào lớp và ngồi xuống nhé." },
+      { id: "u1_8", unit: 1, unitName: "Unit 1: Welcoming Students", num: 8, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "It's good to see you!", ipa: "/ɪts ɡʊd tə si ju/", vi: "Rất vui được gặp em!" },
+      { id: "u1_9", unit: 1, unitName: "Unit 1: Welcoming Students", num: 9, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "It's good to see you again!", ipa: "/ɪts ɡʊd tə si ju əˈɡɛn/", vi: "Rất vui được gặp lại em!" },
+      { id: "u1_10", unit: 1, unitName: "Unit 1: Welcoming Students", num: 10, secCode: "U1-A", secName: "A. Chào học sinh khi bước vào lớp", en: "I'm happy to see you all today.", ipa: "/aɪm ˈhæpi tə si ju ɔl təˈdeɪ/", vi: "Cô/thầy rất vui được gặp các em hôm nay." },
+
+      // Section B: Hỏi thăm học sinh (11-18)
+      { id: "u1_11", unit: 1, unitName: "Unit 1: Welcoming Students", num: 11, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "How are you today?", ipa: "/haʊ ɑr ju təˈdeɪ/", vi: "Hôm nay em thế nào?" },
+      { id: "u1_12", unit: 1, unitName: "Unit 1: Welcoming Students", num: 12, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "How's everyone doing today?", ipa: "/haʊz ˈɛvriˌwʌn ˈduɪŋ təˈdeɪ/", vi: "Hôm nay cả lớp thế nào?" },
+      { id: "u1_13", unit: 1, unitName: "Unit 1: Welcoming Students", num: 13, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "How are you feeling today?", ipa: "/haʊ ɑr ju ˈfilɪŋ təˈdeɪ/", vi: "Hôm nay em cảm thấy thế nào?" },
+      { id: "u1_14", unit: 1, unitName: "Unit 1: Welcoming Students", num: 14, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "Did you have a good morning?", ipa: "/dɪd ju hæv ə ɡʊd ˈmɔrnɪŋ/", vi: "Sáng nay của em ổn chứ?" },
+      { id: "u1_15", unit: 1, unitName: "Unit 1: Welcoming Students", num: 15, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "Did you have a good weekend?", ipa: "/dɪd ju hæv ə ɡʊd ˈwikˌɛnd/", vi: "Cuối tuần của em vui chứ?" },
+      { id: "u1_16", unit: 1, unitName: "Unit 1: Welcoming Students", num: 16, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "Are you feeling good today?", ipa: "/ɑr ju ˈfilɪŋ ɡʊd təˈdeɪ/", vi: "Hôm nay em cảm thấy ổn chứ?" },
+      { id: "u1_17", unit: 1, unitName: "Unit 1: Welcoming Students", num: 17, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "Is everyone doing okay?", ipa: "/ɪz ˈɛvriˌwʌn ˈduɪŋ oʊˈkeɪ/", vi: "Mọi người đều ổn chứ?" },
+      { id: "u1_18", unit: 1, unitName: "Unit 1: Welcoming Students", num: 18, secCode: "U1-B", secName: "B. Hỏi thăm học sinh", en: "Are you ready for class?", ipa: "/ɑr ju ˈrɛdi fər klæs/", vi: "Các em sẵn sàng vào học chưa?" },
+
+      // Section C: Tạo năng lượng tích cực đầu giờ (19-25)
+      { id: "u1_19", unit: 1, unitName: "Unit 1: Welcoming Students", num: 19, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "It's great to have you here.", ipa: "/ɪts ɡreɪt tə hæv ju hɪr/", vi: "Rất vui vì các em có mặt ở đây." },
+      { id: "u1_20", unit: 1, unitName: "Unit 1: Welcoming Students", num: 20, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "I hope you're having a good day.", ipa: "/aɪ hoʊp jʊr ˈhævɪŋ ə ɡʊd deɪ/", vi: "Cô/thầy hy vọng các em đang có một ngày vui vẻ." },
+      { id: "u1_21", unit: 1, unitName: "Unit 1: Welcoming Students", num: 21, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "You look happy today!", ipa: "/ju lʊk ˈhæpi təˈdeɪ/", vi: "Hôm nay trông em vui đấy!" },
+      { id: "u1_22", unit: 1, unitName: "Unit 1: Welcoming Students", num: 22, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "You look ready to learn!", ipa: "/ju lʊk ˈrɛdi tə lɜrn/", vi: "Trông các em có vẻ sẵn sàng học rồi đấy!" },
+      { id: "u1_23", unit: 1, unitName: "Unit 1: Welcoming Students", num: 23, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "Let's have a great class today!", ipa: "/lɛts hæv ə ɡreɪt klæs təˈdeɪ/", vi: "Hôm nay chúng ta cùng có một buổi học thật tuyệt nhé!" },
+      { id: "u1_24", unit: 1, unitName: "Unit 1: Welcoming Students", num: 24, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "Let's have some fun today!", ipa: "/lɛts hæv sʌm fʌn təˈdeɪ/", vi: "Hôm nay chúng ta cùng học thật vui nhé!" },
+      { id: "u1_25", unit: 1, unitName: "Unit 1: Welcoming Students", num: 25, secCode: "U1-C", secName: "C. Tạo năng lượng tích cực đầu giờ", en: "Let's make today a great day!", ipa: "/lɛts meɪk təˈdeɪ ə ɡreɪt deɪ/", vi: "Hãy cùng biến hôm nay thành một ngày thật tuyệt nhé!" },
+
+      // Section D: Chào đón học sinh quay lại lớp (26-30)
+      { id: "u1_26", unit: 1, unitName: "Unit 1: Welcoming Students", num: 26, secCode: "U1-D", secName: "D. Chào đón học sinh quay lại lớp", en: "Welcome back!", ipa: "/ˈwɛlkəm bæk/", vi: "Chào mừng em quay lại!" },
+      { id: "u1_27", unit: 1, unitName: "Unit 1: Welcoming Students", num: 27, secCode: "U1-D", secName: "D. Chào đón học sinh quay lại lớp", en: "Welcome back to class!", ipa: "/ˈwɛlkəm bæk tə klæs/", vi: "Chào mừng các em quay lại lớp!" },
+      { id: "u1_28", unit: 1, unitName: "Unit 1: Welcoming Students", num: 28, secCode: "U1-D", secName: "D. Chào đón học sinh quay lại lớp", en: "We're happy to have you back.", ipa: "/wɪr ˈhæpi tə hæv ju bæk/", vi: "Cô/thầy rất vui vì em đã quay lại." },
+      { id: "u1_29", unit: 1, unitName: "Unit 1: Welcoming Students", num: 29, secCode: "U1-D", secName: "D. Chào đón học sinh quay lại lớp", en: "We missed you!", ipa: "/wi mɪst ju/", vi: "Mọi người nhớ em đấy!" },
+      { id: "u1_30", unit: 1, unitName: "Unit 1: Welcoming Students", num: 30, secCode: "U1-D", secName: "D. Chào đón học sinh quay lại lớp", en: "It's nice to have everyone back together.", ipa: "/ɪts naɪs tə hæv ˈɛvriˌwʌn bæk təˈɡɛðər/", vi: "Thật vui khi cả lớp lại có mặt đông đủ." },
+
+      // Section E: Chào đón học sinh mới (31-35)
+      { id: "u1_31", unit: 1, unitName: "Unit 1: Welcoming Students", num: 31, secCode: "U1-E", secName: "E. Chào đón học sinh mới", en: "Welcome to our class!", ipa: "/ˈwɛlkəm tə aʊər klæs/", vi: "Chào mừng em đến với lớp!" },
+      { id: "u1_32", unit: 1, unitName: "Unit 1: Welcoming Students", num: 32, secCode: "U1-E", secName: "E. Chào đón học sinh mới", en: "We have a new student today.", ipa: "/wi hæv ə nu ˈstudənt təˈdeɪ/", vi: "Hôm nay lớp chúng ta có một bạn mới." },
+      { id: "u1_33", unit: 1, unitName: "Unit 1: Welcoming Students", num: 33, secCode: "U1-E", secName: "E. Chào đón học sinh mới", en: "Let's welcome our new classmate.", ipa: "/lɛts ˈwɛlkəm aʊər nu ˈklæsˌmeɪt/", vi: "Hãy cùng chào đón bạn mới nào." },
+      { id: "u1_34", unit: 1, unitName: "Unit 1: Welcoming Students", num: 34, secCode: "U1-E", secName: "E. Chào đón học sinh mới", en: "We're happy to have you with us.", ipa: "/wɪr ˈhæpi tə hæv ju wɪð ʌs/", vi: "Cả lớp rất vui khi có em tham gia." },
+      { id: "u1_35", unit: 1, unitName: "Unit 1: Welcoming Students", num: 35, secCode: "U1-E", secName: "E. Chào đón học sinh mới", en: "Please make yourself comfortable.", ipa: "/pliz meɪk jərˈsɛlf ˈkʌmftərbəl/", vi: "Em cứ tự nhiên nhé." },
+
+      // Section F: Chuyển từ chào hỏi sang bắt đầu tiết học (36-40)
+      { id: "u1_36", unit: 1, unitName: "Unit 1: Welcoming Students", num: 36, secCode: "U1-F", secName: "F. Chuyển từ chào hỏi sang bắt đầu tiết học", en: "Okay, everyone. Let's get started.", ipa: "/oʊˈkeɪ ˈɛvriˌwʌn, lɛts ɡɛt ˈstɑrtɪd/", vi: "Được rồi cả lớp. Chúng ta bắt đầu nhé." },
+      { id: "u1_37", unit: 1, unitName: "Unit 1: Welcoming Students", num: 37, secCode: "U1-F", secName: "F. Chuyển từ chào hỏi sang bắt đầu tiết học", en: "Are we ready to start?", ipa: "/ɑr wi ˈrɛdi tə stɑrt/", vi: "Chúng ta sẵn sàng bắt đầu chưa?" },
+      { id: "u1_38", unit: 1, unitName: "Unit 1: Welcoming Students", num: 38, secCode: "U1-F", secName: "F. Chuyển từ chào hỏi sang bắt đầu tiết học", en: "Is everyone ready?", ipa: "/ɪz ˈɛvriˌwʌn ˈrɛdi/", vi: "Cả lớp sẵn sàng chưa?" },
+      { id: "u1_39", unit: 1, unitName: "Unit 1: Welcoming Students", num: 39, secCode: "U1-F", secName: "F. Chuyển từ chào hỏi sang bắt đầu tiết học", en: "Let's start today's lesson.", ipa: "/lɛts stɑrt təˈdeɪz ˈlɛsən/", vi: "Chúng ta bắt đầu bài học hôm nay nhé." },
+      { id: "u1_40", unit: 1, unitName: "Unit 1: Welcoming Students", num: 40, secCode: "U1-F", secName: "F. Chuyển từ chào hỏi sang bắt đầu tiết học", en: "Let's see what we're learning today.", ipa: "/lɛts si wʌt wɪr ˈlɜrnɪŋ təˈdeɪ/", vi: "Hãy xem hôm nay chúng ta sẽ học gì nhé." },
+
+      // ---------------- UNIT 2: GREETING STUDENTS INDIVIDUALLY (56) ----------------
+      // Section 1: Chào học sinh khi bước vào lớp (1-8)
+      { id: "u2_1", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 1, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Good morning, Minh!", ipa: "/ɡʊd ˈmɔrnɪŋ, mɪn/", vi: "Chào buổi sáng, Minh!" },
+      { id: "u2_2", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 2, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Hi, Lan! How are you?", ipa: "/haɪ, læn! haʊ ɑr ju/", vi: "Chào Lan! Em khỏe không?" },
+      { id: "u2_3", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 3, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Hey, Nam! Good to see you.", ipa: "/heɪ, næm! ɡʊd tə si ju/", vi: "Chào Nam! Rất vui được gặp em." },
+      { id: "u2_4", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 4, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Nice to see you again.", ipa: "/naɪs tə si ju əˈɡɛn/", vi: "Rất vui được gặp lại em." },
+      { id: "u2_5", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 5, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Welcome back!", ipa: "/ˈwɛlkəm bæk/", vi: "Chào mừng em quay lại!" },
+      { id: "u2_6", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 6, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Come on in.", ipa: "/kʌm ɑn ɪn/", vi: "Vào lớp đi em." },
+      { id: "u2_7", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 7, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Good to have you here today.", ipa: "/ɡʊd tə hæv ju hɪr təˈdeɪ/", vi: "Rất vui vì hôm nay em có mặt." },
+      { id: "u2_8", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 8, secCode: "U2-1", secName: "1. Chào học sinh khi bước vào lớp", en: "Glad you're here.", ipa: "/ɡlæd jʊr hɪr/", vi: "Cô/thầy rất vui vì em đã đến." },
+
+      // Section 2: Hỏi thăm học sinh nhanh (9-16)
+      { id: "u2_9", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 9, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "How are you today?", ipa: "/haʊ ɑr ju təˈdeɪ/", vi: "Hôm nay em thế nào?" },
+      { id: "u2_10", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 10, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "How are you doing?", ipa: "/haʊ ɑr ju ˈduɪŋ/", vi: "Em thế nào rồi?" },
+      { id: "u2_11", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 11, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "How's your day going?", ipa: "/haʊz jʊr deɪ ˈɡoʊɪŋ/", vi: "Hôm nay của em thế nào rồi?" },
+      { id: "u2_12", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 12, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "How was your morning?", ipa: "/haʊ wəz jʊr ˈmɔrnɪŋ/", vi: "Buổi sáng của em thế nào?" },
+      { id: "u2_13", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 13, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "Did you have a good morning?", ipa: "/dɪd ju hæv ə ɡʊd ˈmɔrnɪŋ/", vi: "Sáng nay em ổn chứ?" },
+      { id: "u2_14", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 14, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "How are things today?", ipa: "/haʊ ɑr θɪŋz təˈdeɪ/", vi: "Hôm nay mọi chuyện thế nào?" },
+      { id: "u2_15", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 15, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "Everything okay?", ipa: "/ˈɛvriˌθɪŋ oʊˈkeɪ/", vi: "Mọi thứ ổn chứ?" },
+      { id: "u2_16", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 16, secCode: "U2-2", secName: "2. Hỏi thăm học sinh nhanh", en: "Are you doing okay?", ipa: "/ɑr ju ˈduɪŋ oʊˈkeɪ/", vi: "Em vẫn ổn chứ?" },
+
+      // Section 3: Hỏi về tâm trạng của học sinh (17-22)
+      { id: "u2_17", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 17, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "How are you feeling today?", ipa: "/haʊ ɑr ju ˈfilɪŋ təˈdeɪ/", vi: "Hôm nay em cảm thấy thế nào?" },
+      { id: "u2_18", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 18, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "You look happy today.", ipa: "/ju lʊk ˈhæpi təˈdeɪ/", vi: "Hôm nay trông em vui quá." },
+      { id: "u2_19", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 19, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "You look a little tired. Are you okay?", ipa: "/ju lʊk ə ˈlɪtəl ˈtaɪərd. ɑr ju oʊˈkeɪ/", vi: "Trông em hơi mệt. Em ổn không?" },
+      { id: "u2_20", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 20, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "You seem quiet today. Everything okay?", ipa: "/ju sim ˈkwaɪət təˈdeɪ. ˈɛvriˌθɪŋ oʊˈkeɪ/", vi: "Hôm nay em có vẻ ít nói. Mọi chuyện ổn chứ?" },
+      { id: "u2_21", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 21, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "Are you feeling better today?", ipa: "/ɑr ju ˈfilɪŋ ˈbɛtər təˈdeɪ/", vi: "Hôm nay em thấy khỏe hơn chưa?" },
+      { id: "u2_22", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 22, secCode: "U2-3", secName: "3. Hỏi về tâm trạng của học sinh", en: "Feeling good today?", ipa: "/ˈfilɪŋ ɡʊd təˈdeɪ/", vi: "Hôm nay thấy ổn chứ?" },
+
+      // Section 4: Khi học sinh nghỉ học hôm trước hoặc quay lại lớp (23-28)
+      { id: "u2_23", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 23, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "We missed you yesterday.", ipa: "/wi mɪst ju ˈjɛstərdeɪ/", vi: "Hôm qua cả lớp thiếu em đấy." },
+      { id: "u2_24", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 24, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "Good to see you back.", ipa: "/ɡʊd tə si ju bæk/", vi: "Rất vui khi thấy em quay lại." },
+      { id: "u2_25", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 25, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "Are you feeling better now?", ipa: "/ɑr ju ˈfilɪŋ ˈbɛtər naʊ/", vi: "Bây giờ em thấy khỏe hơn chưa?" },
+      { id: "u2_26", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 26, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "How are you feeling now?", ipa: "/haʊ ɑr ju ˈfilɪŋ naʊ/", vi: "Bây giờ em cảm thấy thế nào?" },
+      { id: "u2_27", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 27, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "Everything okay now?", ipa: "/ˈɛvriˌθɪŋ oʊˈkeɪ naʊ/", vi: "Bây giờ mọi thứ ổn rồi chứ?" },
+      { id: "u2_28", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 28, secCode: "U2-4", secName: "4. Khi học sinh nghỉ học hôm trước hoặc quay lại lớp", en: "Welcome back to class.", ipa: "/ˈwɛlkəm bæk tə klæs/", vi: "Chào mừng em quay lại lớp." },
+
+      // Section 5: Những tương tác cá nhân rất ngắn (29-36)
+      { id: "u2_29", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 29, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Did you sleep well?", ipa: "/dɪd ju slip wɛl/", vi: "Tối qua em ngủ ngon không?" },
+      { id: "u2_30", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 30, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Did you have breakfast?", ipa: "/dɪd ju hæv ˈbrɛkfəst/", vi: "Em ăn sáng chưa?" },
+      { id: "u2_31", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 31, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Did you have a good weekend?", ipa: "/dɪd ju hæv ə ɡʊd ˈwikˌɛnd/", vi: "Cuối tuần của em vui không?" },
+      { id: "u2_32", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 32, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "What did you do this weekend?", ipa: "/wʌt dɪd ju du ðɪs ˈwikˌɛnd/", vi: "Cuối tuần em đã làm gì?" },
+      { id: "u2_33", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 33, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Did anything fun happen today?", ipa: "/dɪd ˈɛniˌθɪŋ fʌn ˈhæpən təˈdeɪ/", vi: "Hôm nay có chuyện gì vui không?" },
+      { id: "u2_34", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 34, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "How was lunch?", ipa: "/haʊ wəz lʌntʃ/", vi: "Bữa trưa của em thế nào?" },
+      { id: "u2_35", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 35, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Did you enjoy your break?", ipa: "/dɪd ju ɪnˈdʒɔɪ jʊr breɪk/", vi: "Giờ nghỉ của em vui không?" },
+      { id: "u2_36", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 36, secCode: "U2-5", secName: "5. Những tương tác cá nhân rất ngắn", en: "Ready for class?", ipa: "/ˈrɛdi fər klæs/", vi: "Sẵn sàng học chưa?" },
+
+      // Section 6: Kiểm tra sự chuẩn bị của từng học sinh (37-44)
+      { id: "u2_37", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 37, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Are you ready for class?", ipa: "/ɑr ju ˈrɛdi fər klæs/", vi: "Em sẵn sàng vào học chưa?" },
+      { id: "u2_38", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 38, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Do you have everything you need?", ipa: "/du ju hæv ˈɛvriˌθɪŋ ju nid/", vi: "Em có đủ đồ dùng cần thiết chưa?" },
+      { id: "u2_39", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 39, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Do you have your book?", ipa: "/du ju hæv jʊr bʊk/", vi: "Em có mang sách không?" },
+      { id: "u2_40", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 40, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Do you have your notebook?", ipa: "/du ju hæv jʊr ˈnoʊtˌbʊk/", vi: "Em có mang vở không?" },
+      { id: "u2_41", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 41, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Do you have a pencil?", ipa: "/du ju hæv ə ˈpɛnsəl/", vi: "Em có bút chì không?" },
+      { id: "u2_42", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 42, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Did you bring your homework?", ipa: "/dɪd ju brɪŋ jʊr ˈhoʊmˌwɜrk/", vi: "Em có mang bài tập về nhà không?" },
+      { id: "u2_43", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 43, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "Did you finish your homework?", ipa: "/dɪd ju ˈfɪnɪʃ jʊr ˈhoʊmˌwɜrk/", vi: "Em làm xong bài tập chưa?" },
+      { id: "u2_44", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 44, secCode: "U2-6", secName: "6. Kiểm tra sự chuẩn bị của từng học sinh", en: "All set?", ipa: "/ɔl sɛt/", vi: "Chuẩn bị xong hết chưa?" },
+
+      // Section 7: Khi học sinh đến muộn (45-50)
+      { id: "u2_45", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 45, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "Hi, come on in.", ipa: "/haɪ, kʌm ɑn ɪn/", vi: "Chào em, vào lớp đi." },
+      { id: "u2_46", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 46, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "Good morning. Take your seat.", ipa: "/ɡʊd ˈmɔrnɪŋ. teɪk jʊr sit/", vi: "Chào buổi sáng. Em về chỗ ngồi nhé." },
+      { id: "u2_47", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 47, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "Is everything okay?", ipa: "/ɪz ˈɛvriˌθɪŋ oʊˈkeɪ/", vi: "Mọi chuyện ổn chứ?" },
+      { id: "u2_48", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 48, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "What happened this morning?", ipa: "/wʌt ˈhæpənd ðɪs ˈmɔrnɪŋ/", vi: "Sáng nay có chuyện gì vậy?" },
+      { id: "u2_49", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 49, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "You're a little late today.", ipa: "/jʊr ə ˈlɪtəl leɪt təˈdeɪ/", vi: "Hôm nay em đến hơi muộn nhé." },
+      { id: "u2_50", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 50, secCode: "U2-7", secName: "7. Khi học sinh đến muộn", en: "Try to be on time tomorrow, okay?", ipa: "/traɪ tə bi ɑn taɪm təˈmɑroʊ, oʊˈkeɪ/", vi: "Ngày mai cố gắng đến đúng giờ nhé." },
+
+      // Section 8: Khen hoặc ghi nhận học sinh ngay đầu giờ (51-56)
+      { id: "u2_51", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 51, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "I like your energy today.", ipa: "/aɪ laɪk jʊr ˈɛnərdʒi təˈdeɪ/", vi: "Cô/thầy thích năng lượng của em hôm nay." },
+      { id: "u2_52", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 52, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "You look ready to learn today.", ipa: "/ju lʊk ˈrɛdi tə lɜrn təˈdeɪ/", vi: "Hôm nay trông em rất sẵn sàng học đấy." },
+      { id: "u2_53", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 53, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "Thanks for being on time.", ipa: "/θæŋks fər ˈbiɪŋ ɑn taɪm/", vi: "Cảm ơn em vì đã đến đúng giờ." },
+      { id: "u2_54", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 54, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "Thanks for being prepared.", ipa: "/θæŋks fər ˈbiɪŋ priˈpɛrd/", vi: "Cảm ơn em vì đã chuẩn bị đầy đủ." },
+      { id: "u2_55", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 55, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "I'm glad to see that smile.", ipa: "/aɪm ɡlæd tə si ðæt smaɪl/", vi: "Cô/thầy rất vui khi thấy nụ cười đó." },
+      { id: "u2_56", unit: 2, unitName: "Unit 2: Greeting Students Individually", num: 56, secCode: "U2-8", secName: "8. Khen hoặc ghi nhận học sinh ngay đầu giờ", en: "You seem excited today!", ipa: "/ju sim ɪkˈsaɪtɪd təˈdeɪ/", vi: "Hôm nay trông em hào hứng quá!" }
+    ];
+
+    // =========================================================================
+    // 2. STATE & STORAGE MANAGEMENT
+    // =========================================================================
+    const STORAGE_KEY = "u12_classroom_english_v1";
+
+    let state = {
+      activeTab: "reference",
+      refMode: "list",          // 'list' | 'flashcard'
+      readingMode: "en_to_vi",  // 'en_to_vi' | 'situation'
+      listeningMode: "mcq",     // 'mcq' | 'dictation'
+      writingMode: "scramble",  // 'scramble' | 'typing'
+      unitFilter: "all",
+      sectionFilter: "all",
+      masteryFilter: "all",
+      searchQuery: "",
+      speechRate: 1.0,
+      soundEnabled: true,
+      progress: {},             // { [id]: { mastered: bool, needsReview: bool, correct: n, wrong: n } }
+      queues: {},               // shuffled item IDs per tab
+      queueIndex: {},           // current index per tab
+      fcIndex: 0,
+      fcFlipped: false
+    };
+
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            state.progress = parsed.progress || {};
+            if (typeof parsed.soundEnabled === "boolean") state.soundEnabled = parsed.soundEnabled;
+            if (typeof parsed.speechRate === "number") state.speechRate = parsed.speechRate;
+          }
+        }
+      } catch (e) {
+        console.warn("Storage load failed:", e);
+      }
+    }
+
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          progress: state.progress,
+          soundEnabled: state.soundEnabled,
+          speechRate: state.speechRate
+        }));
+      } catch (e) {
+        console.warn("Storage save failed:", e);
+      }
+    }
+
+    function getItemProgress(id) {
+      return state.progress[id] || { mastered: false, needsReview: false, correct: 0, wrong: 0 };
+    }
+
+    function recordAnswer(id, isCorrect) {
+      const prev = getItemProgress(id);
+      if (isCorrect) {
+        state.progress[id] = {
+          mastered: true,
+          needsReview: false,
+          correct: prev.correct + 1,
+          wrong: prev.wrong
+        };
+      } else {
+        state.progress[id] = {
+          mastered: false,
+          needsReview: true,
+          correct: prev.correct,
+          wrong: prev.wrong + 1
+        };
+      }
+      saveProgress();
+      updateStatsBar();
+    }
+
+    function toggleMasteredManual(id) {
+      const prev = getItemProgress(id);
+      state.progress[id] = {
+        mastered: !prev.mastered,
+        needsReview: prev.mastered ? true : false,
+        correct: prev.correct,
+        wrong: prev.wrong
+      };
+      saveProgress();
+      updateStatsBar();
+    }
+
+    // =========================================================================
+    // 3. WEB AUDIO API (FUN & PLEASANT SOUND EFFECTS)
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, startTime, duration, type = "sine", volume = 0.14) {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(0.001, startTime);
+      gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(startTime);
+      osc.stop(startTime + duration + 0.02);
+    }
+
+    function playCorrectSound() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      // Playful celebratory triad variations
+      const melodies = [
+        [523.25, 659.25, 783.99, 1046.50], // C5 E5 G5 C6
+        [587.33, 739.99, 880.00, 1174.66], // D5 F#5 A5 D6
+        [493.88, 659.25, 783.99, 987.77]   // B4 E5 G5 B5
+      ];
+      const chosen = melodies[Math.floor(Math.random() * melodies.length)];
+      chosen.forEach((f, idx) => {
+        playTone(f, now + idx * 0.065, 0.22, idx === 3 ? "triangle" : "sine", 0.13);
+      });
+    }
+
+    function playWrongSound() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      // Gentle soft descending double tone
+      playTone(260, now, 0.14, "sine", 0.12);
+      playTone(210, now + 0.11, 0.22, "sine", 0.11);
+    }
+
+    function playPopSound() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      playTone(620, now, 0.045, "sine", 0.06);
+    }
+
+    // =========================================================================
+    // 4. WEB SPEECH API (TEXT-TO-SPEECH & SPEECH RECOGNITION)
+    // =========================================================================
+    let preferredVoice = null;
+
+    function loadVoices() {
+      if (!("speechSynthesis" in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return;
+      preferredVoice =
+        voices.find(v => v.lang === "en-US" && /natural|google|samantha|aria|jenny/i.test(v.name)) ||
+        voices.find(v => v.lang === "en-US") ||
+        voices.find(v => v.lang.startsWith("en")) ||
+        null;
+    }
+
+    if ("speechSynthesis" in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function speakText(text, customRate) {
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = customRate || state.speechRate;
+      utter.pitch = 1.0;
+      if (preferredVoice) utter.voice = preferredVoice;
+      window.speechSynthesis.speak(utter);
+    }
+
+    // =========================================================================
+    // 5. FILTERING, SHUFFLING & NORMALIZATION HELPERS
+    // =========================================================================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function normalizeText(str) {
+      return str
+        .toLowerCase()
+        .replace(/[’‘]/g, "'")
+        .replace(/[^a-z0-9'\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandContractions(str) {
+      return normalizeText(str)
+        .replace(/\bi'm\b/g, "i am")
+        .replace(/\bit's\b/g, "it is")
+        .replace(/\bhow's\b/g, "how is")
+        .replace(/\byou're\b/g, "you are")
+        .replace(/\bwe're\b/g, "we are")
+        .replace(/\blet's\b/g, "let us")
+        .replace(/\btoday's\b/g, "todays")
+        .replace(/\bokay\b/g, "ok");
+    }
+
+    function getFilteredSentences() {
+      return SENTENCES.filter(item => {
+        if (state.unitFilter !== "all" && String(item.unit) !== state.unitFilter) return false;
+        if (state.sectionFilter !== "all" && item.secCode !== state.sectionFilter) return false;
+        const p = getItemProgress(item.id);
+        if (state.masteryFilter === "mastered" && !p.mastered) return false;
+        if (state.masteryFilter === "unmastered" && p.mastered && !p.needsReview) return false;
+        return true;
+      });
+    }
+
+    function getDistractors(target, count = 3, mode = "vi") {
+      // Prevent duplicate meanings or duplicate English texts in options
+      const usedEn = new Set([normalizeText(target.en)]);
+      const usedVi = new Set([target.vi.toLowerCase().trim()]);
+      const pool = shuffleArray(SENTENCES);
+      const selected = [];
+
+      // Prefer same unit distractors first for realistic challenge, then fallback to all
+      const sameUnit = pool.filter(x => x.unit === target.unit);
+      const otherUnit = pool.filter(x => x.unit !== target.unit);
+      const orderedPool = [...sameUnit, ...otherUnit];
+
+      for (const cand of orderedPool) {
+        if (selected.length >= count) break;
+        const normEn = normalizeText(cand.en);
+        const normVi = cand.vi.toLowerCase().trim();
+        if (usedEn.has(normEn) || usedVi.has(normVi)) continue;
+        usedEn.add(normEn);
+        usedVi.add(normVi);
+        selected.push(cand);
+      }
+      return selected;
+    }
+
+    function ensureQueue(tabKey, forceReset = false) {
+      const filtered = getFilteredSentences();
+      const filteredIds = filtered.map(x => x.id);
+      if (
+        forceReset ||
+        !state.queues[tabKey] ||
+        state.queues[tabKey].length !== filteredIds.length ||
+        !state.queues[tabKey].every(id => filteredIds.includes(id))
+      ) {
+        state.queues[tabKey] = shuffleArray(filteredIds);
+        state.queueIndex[tabKey] = 0;
+      }
+    }
+
+    function getCurrentQueueItem(tabKey) {
+      ensureQueue(tabKey);
+      const q = state.queues[tabKey];
+      if (!q || q.length === 0) return null;
+      const idx = (state.queueIndex[tabKey] || 0) % q.length;
+      const id = q[idx];
+      return SENTENCES.find(x => x.id === id) || null;
+    }
+
+    function advanceQueue(tabKey) {
+      const q = state.queues[tabKey] || [];
+      if (q.length === 0) return;
+      let nextIdx = (state.queueIndex[tabKey] || 0) + 1;
+      if (nextIdx >= q.length) {
+        // Reshuffle for next round
+        state.queues[tabKey] = shuffleArray(q);
+        nextIdx = 0;
+      }
+      state.queueIndex[tabKey] = nextIdx;
+    }
+
+    // =========================================================================
+    // 6. UI INITIALIZATION & STATS
+    // =========================================================================
+    function populateSectionFilter() {
+      const select = document.getElementById("sectionFilter");
+      const currentVal = state.sectionFilter;
+      const relevant = SENTENCES.filter(s => state.unitFilter === "all" || String(s.unit) === state.unitFilter);
+      const map = new Map();
+      relevant.forEach(s => {
+        if (!map.has(s.secCode)) {
+          map.set(s.secCode, `U${s.unit} • ${s.secName}`);
+        }
+      });
+
+      select.innerHTML = `<option value="all">Tất cả các mục (${map.size} mục)</option>`;
+      map.forEach((label, code) => {
+        const opt = document.createElement("option");
+        opt.value = code;
+        opt.textContent = label;
+        select.appendChild(opt);
+      });
+
+      if (map.has(currentVal)) {
+        select.value = currentVal;
+      } else {
+        select.value = "all";
+        state.sectionFilter = "all";
+      }
+    }
+
+    function updateStatsBar() {
+      let mastered = 0;
+      let review = 0;
+      SENTENCES.forEach(s => {
+        const p = getItemProgress(s.id);
+        if (p.mastered && !p.needsReview) mastered++;
+        if (p.needsReview || !p.mastered) review++;
+      });
+      const total = SENTENCES.length;
+      const pct = Math.round((mastered / total) * 100);
+
+      document.getElementById("statTotal").textContent = total;
+      document.getElementById("statMastered").textContent = mastered;
+      document.getElementById("statReview").textContent = review;
+      document.getElementById("globalProgressFill").style.width = `${pct}%`;
+      document.getElementById("globalProgressPct").textContent = `${pct}%`;
+
+      const filtered = getFilteredSentences();
+      document.getElementById("filteredCountBadge").textContent = `Đang chọn: ${filtered.length} câu`;
+    }
+
+    function updateHeaderControls() {
+      document.getElementById("speedLabel").textContent = `Tốc độ: ${state.speechRate === 1 ? "1.0x (Vừa)" : "0.75x (Chậm)"}`;
+      document.getElementById("speedBtn").classList.toggle("active", state.speechRate !== 1);
+      document.getElementById("soundLabel").textContent = `Âm thanh: ${state.soundEnabled ? "Bật" : "Tắt"}`;
+      document.getElementById("soundBtn").classList.toggle("active", state.soundEnabled);
+    }
+
+    // =========================================================================
+    // 7. RENDER FUNCTIONS FOR EACH TAB
+    // =========================================================================
+    function renderEmptyFilterState(panel) {
+      panel.innerHTML = `
+        <div class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <h3>Không có mẫu câu nào khớp bộ lọc hiện tại!</h3>
+          <p>Nếu bạn vừa lọc "Các câu làm sai / chưa thuộc", chúc mừng bạn đã thuộc hết phần này.</p>
+          <button class="btn btn-primary" onclick="resetFiltersToAll()">Hiển thị tất cả 96 câu</button>
+        </div>
+      `;
+    }
+
+    window.resetFiltersToAll = function () {
+      state.unitFilter = "all";
+      state.sectionFilter = "all";
+      state.masteryFilter = "all";
+      document.getElementById("unitFilter").value = "all";
+      populateSectionFilter();
+      document.getElementById("masteryFilter").value = "all";
+      updateStatsBar();
+      renderActiveTab(true);
+    };
+
+    function renderActiveTab(forceQueueReset = false) {
+      const panel = document.getElementById("workspacePanel");
+      if (forceQueueReset) {
+        state.queues = {};
+        state.queueIndex = {};
+        state.fcIndex = 0;
+      }
+      updateStatsBar();
+
+      switch (state.activeTab) {
+        case "reference":
+          renderReferenceTab(panel);
+          break;
+        case "reading":
+          renderReadingTab(panel);
+          break;
+        case "listening":
+          renderListeningTab(panel);
+          break;
+        case "speaking":
+          renderSpeakingTab(panel);
+          break;
+        case "writing":
+          renderWritingTab(panel);
+          break;
+      }
+    }
+
+    // -------------------- TAB 1: REFERENCE & FLASHCARDS --------------------
+    function renderReferenceTab(panel) {
+      const filtered = getFilteredSentences();
+      const q = state.searchQuery.toLowerCase().trim();
+      const searched = q
+        ? filtered.filter(s =>
+            s.en.toLowerCase().includes(q) ||
+            s.vi.toLowerCase().includes(q) ||
+            s.secName.toLowerCase().includes(q)
+          )
+        : filtered;
+
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Kho Mẫu Câu & Flashcards</h2>
+            <p>Tra cứu đầy đủ 100% mẫu câu theo sách, nghe phát âm chuẩn và đánh dấu tiến độ.</p>
+          </div>
+          <div class="submode-bar">
+            <button class="pill-btn ${state.refMode === "list" ? "active" : ""}" onclick="setRefMode('list')">Danh sách chi tiết</button>
+            <button class="pill-btn ${state.refMode === "flashcard" ? "active" : ""}" onclick="setRefMode('flashcard')">Thẻ Flashcard</button>
+          </div>
+        </div>
+        <div id="refBody"></div>
+      `;
+
+      const body = document.getElementById("refBody");
+      if (filtered.length === 0) {
+        renderEmptyFilterState(body);
+        return;
+      }
+
+      if (state.refMode === "list") {
+        body.innerHTML = `
+          <div class="ref-toolbar">
+            <input id="refSearchInput" class="search-input" type="text" placeholder="Tìm kiếm câu tiếng Anh, nghĩa tiếng Việt hoặc mục..." value="${escapeHtml(state.searchQuery)}" />
+            <span class="context-tag">Hiển thị: ${searched.length} / ${filtered.length} câu</span>
+          </div>
+          <div class="sentence-list" id="sentenceList"></div>
+        `;
+
+        const searchEl = document.getElementById("refSearchInput");
+        searchEl.addEventListener("input", e => {
+          state.searchQuery = e.target.value;
+          renderReferenceListOnly(filtered);
+        });
+
+        renderReferenceListOnly(filtered);
+      } else {
+        // Flashcard mode
+        if (state.fcIndex >= filtered.length) state.fcIndex = 0;
+        const item = filtered[state.fcIndex];
+        const p = getItemProgress(item.id);
+        body.innerHTML = `
+          <div class="flashcard-wrap">
+            <div class="exercise-topbar">
+              <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+              <span>Thẻ ${state.fcIndex + 1} / ${filtered.length}</span>
+            </div>
+
+            <div class="flashcard" onclick="flipFlashcard()">
+              <span class="flashcard-badge">U${item.unit} #${item.num}</span>
+              ${!state.fcFlipped
+                ? `<div class="fc-main">${escapeHtml(item.en)}</div>
+                   <div class="fc-ipa">${escapeHtml(item.ipa)}</div>
+                   <span class="flashcard-hint">Bấm vào thẻ để xem nghĩa tiếng Việt</span>`
+                : `<div class="fc-vi">${escapeHtml(item.vi)}</div>
+                   <div class="fc-main" style="font-size:1.15rem; margin-top:12px; color:#cbd5e1;">${escapeHtml(item.en)}</div>
+                   <div class="fc-ipa">${escapeHtml(item.ipa)}</div>
+                   <span class="flashcard-hint">Bấm lại để lật mặt trước</span>`
+              }
+            </div>
+
+            <div class="exercise-footer">
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-outline btn-sm" onclick="prevFlashcard()">&larr; Trước</button>
+                <button class="btn btn-outline btn-sm" onclick="nextFlashcard()">Sau &rarr;</button>
+                <button class="btn btn-outline btn-sm" onclick="shuffleFlashcards()">Trộn thẻ</button>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-primary btn-sm" onclick="speakById('${item.id}')">Nghe phát âm</button>
+                <button class="mastery-toggle ${p.mastered ? "is-mastered" : ""}" onclick="toggleFcMastered('${item.id}')">
+                  ${p.mastered ? "✓ Đã thuộc" : "Đánh dấu đã thuộc"}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderReferenceListOnly(filtered) {
+      const q = state.searchQuery.toLowerCase().trim();
+      const searched = q
+        ? filtered.filter(s =>
+            s.en.toLowerCase().includes(q) ||
+            s.vi.toLowerCase().includes(q) ||
+            s.secName.toLowerCase().includes(q)
+          )
+        : filtered;
+
+      const listEl = document.getElementById("sentenceList");
+      if (!listEl) return;
+      if (searched.length === 0) {
+        listEl.innerHTML = `<div class="empty-state"><p>Không tìm thấy mẫu câu phù hợp với từ khóa "${escapeHtml(state.searchQuery)}".</p></div>`;
+        return;
+      }
+
+      listEl.innerHTML = searched.map(item => {
+        const p = getItemProgress(item.id);
+        const statusCls = p.mastered && !p.needsReview ? "mastered" : (p.needsReview ? "needs-review" : "");
+        return `
+          <div class="sentence-row ${statusCls}">
+            <div class="row-num">U${item.unit} #${item.num}</div>
+            <div class="row-content">
+              <div class="row-meta">${escapeHtml(item.secName)}</div>
+              <div class="row-en">${escapeHtml(item.en)}</div>
+              <div class="row-ipa">${escapeHtml(item.ipa)}</div>
+              <div class="row-vi">${escapeHtml(item.vi)}</div>
+            </div>
+            <div class="row-actions">
+              <button class="btn btn-outline btn-icon" onclick="speakById('${item.id}')" title="Nghe phát âm">
+                🔊 Nghe
+              </button>
+              <button class="mastery-toggle ${p.mastered && !p.needsReview ? "is-mastered" : ""}" onclick="toggleListMastered('${item.id}')">
+                ${p.mastered && !p.needsReview ? "✓ Đã thuộc" : (p.needsReview ? "↺ Cần ôn" : "○ Chưa thuộc")}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.setRefMode = function (mode) {
+      state.refMode = mode;
+      state.fcFlipped = false;
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.flipFlashcard = function () {
+      state.fcFlipped = !state.fcFlipped;
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.nextFlashcard = function () {
+      const filtered = getFilteredSentences();
+      state.fcIndex = (state.fcIndex + 1) % filtered.length;
+      state.fcFlipped = false;
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.prevFlashcard = function () {
+      const filtered = getFilteredSentences();
+      state.fcIndex = (state.fcIndex - 1 + filtered.length) % filtered.length;
+      state.fcFlipped = false;
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.shuffleFlashcards = function () {
+      const filtered = getFilteredSentences();
+      state.fcIndex = Math.floor(Math.random() * filtered.length);
+      state.fcFlipped = false;
+      playPopSound();
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.toggleFcMastered = function (id) {
+      toggleMasteredManual(id);
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.toggleListMastered = function (id) {
+      toggleMasteredManual(id);
+      renderReferenceTab(document.getElementById("workspacePanel"));
+    };
+    window.speakById = function (id) {
+      const item = SENTENCES.find(s => s.id === id);
+      if (item) speakText(item.en);
+    };
+
+    // -------------------- TAB 2: READING & COMPREHENSION --------------------
+    function renderReadingTab(panel) {
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Kỹ năng Đọc (Reading & Comprehension)</h2>
+            <p>Bấm chọn đáp án A, B, C, D để kiểm tra ngay lập tức (Instant Feedback).</p>
+          </div>
+          <div class="submode-bar">
+            <button class="pill-btn ${state.readingMode === "en_to_vi" ? "active" : ""}" onclick="setReadingMode('en_to_vi')">Nối câu Anh &rarr; Việt</button>
+            <button class="pill-btn ${state.readingMode === "situation" ? "active" : ""}" onclick="setReadingMode('situation')">Tình huống giao tiếp</button>
+          </div>
+        </div>
+        <div id="readingBody"></div>
+      `;
+
+      const body = document.getElementById("readingBody");
+      const item = getCurrentQueueItem("reading");
+      if (!item) {
+        renderEmptyFilterState(body);
+        return;
+      }
+
+      const q = state.queues["reading"];
+      const idx = state.queueIndex["reading"] || 0;
+      const distractors = getDistractors(item, 3);
+      const options = shuffleArray([item, ...distractors]);
+      const letters = ["A", "B", "C", "D"];
+
+      const isEnToVi = state.readingMode === "en_to_vi";
+
+      body.innerHTML = `
+        <div class="exercise-shell">
+          <div class="exercise-topbar">
+            <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+            <span>Câu ${idx + 1} / ${q.length}</span>
+          </div>
+
+          <div class="prompt-box">
+            <span class="prompt-label">${isEnToVi ? "Chọn nghĩa tiếng Việt chuẩn xác cho mẫu câu sau:" : "Tình huống giao tiếp trong lớp học:"}</span>
+            <div class="prompt-text">${isEnToVi ? escapeHtml(item.en) : escapeHtml(item.vi)}</div>
+            <div class="prompt-sub">
+              ${isEnToVi
+                ? `${escapeHtml(item.ipa)}`
+                : `Ngữ cảnh: <strong>${escapeHtml(item.secName)}</strong> (${escapeHtml(item.unitName)})`
+              }
+            </div>
+            ${isEnToVi ? `<div style="margin-top:6px;"><button class="btn btn-outline btn-sm" style="background:#1e293b;color:#fff;border-color:#475569;" onclick="speakById('${item.id}')">🔊 Nghe phát âm</button></div>` : ""}
+          </div>
+
+          <div class="options-grid" id="readingOptions">
+            ${options.map((opt, i) => `
+              <button class="option-btn" data-opt-id="${opt.id}" onclick="handleReadingChoice('${opt.id}', '${item.id}', this)">
+                <span class="option-letter">${letters[i]}</span>
+                <span>${escapeHtml(isEnToVi ? opt.vi : opt.en)}</span>
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="feedback-box" id="readingFeedback"></div>
+
+          <div class="exercise-footer">
+            <button class="btn btn-outline btn-sm" onclick="reshuffleTab('reading')">Trộn lại danh sách</button>
+            <button class="btn btn-primary" onclick="nextExercise('reading')">Câu tiếp theo &rarr;</button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.setReadingMode = function (mode) {
+      state.readingMode = mode;
+      renderReadingTab(document.getElementById("workspacePanel"));
+    };
+
+    window.handleReadingChoice = function (chosenId, targetId, btnEl) {
+      const container = document.getElementById("readingOptions");
+      if (!container || container.dataset.answered === "1") return;
+      container.dataset.answered = "1";
+
+      const isCorrect = chosenId === targetId;
+      const target = SENTENCES.find(s => s.id === targetId);
+      const buttons = container.querySelectorAll(".option-btn");
+
+      buttons.forEach(b => {
+        b.disabled = true;
+        if (b.dataset.optId === targetId) b.classList.add("correct");
+      });
+      if (!isCorrect) btnEl.classList.add("wrong");
+
+      recordAnswer(targetId, isCorrect);
+      if (isCorrect) playCorrectSound();
+      else playWrongSound();
+
+      const fb = document.getElementById("readingFeedback");
+      fb.className = `feedback-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+      fb.innerHTML = `
+        <div class="feedback-title">${isCorrect ? "✓ Chính xác! Tuyệt vời!" : "✕ Chưa đúng! Hãy ghi nhớ mẫu câu này:"}</div>
+        <div class="feedback-detail">
+          <div><strong>Mẫu câu:</strong> ${escapeHtml(target.en)} <span style="color:#64748b;">${escapeHtml(target.ipa)}</span></div>
+          <div><strong>Nghĩa:</strong> ${escapeHtml(target.vi)}</div>
+          <div><strong>Ngữ cảnh:</strong> Unit ${target.unit} &bull; ${escapeHtml(target.secName)}</div>
+        </div>
+        <div style="margin-top:4px;">
+          <button class="btn btn-outline btn-sm" onclick="speakById('${target.id}')">🔊 Nghe lại phát âm</button>
+        </div>
+      `;
+    };
+
+    // -------------------- TAB 3: LISTENING & DICTATION --------------------
+    function renderListeningTab(panel) {
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Kỹ năng Nghe (Listening & Dictation)</h2>
+            <p>Luyện nghe giọng bản xứ với tốc độ tùy chỉnh (0.75x / 1.0x).</p>
+          </div>
+          <div class="submode-bar">
+            <button class="pill-btn ${state.listeningMode === "mcq" ? "active" : ""}" onclick="setListeningMode('mcq')">Nghe & Chọn đáp án</button>
+            <button class="pill-btn ${state.listeningMode === "dictation" ? "active" : ""}" onclick="setListeningMode('dictation')">Nghe & Điền từ</button>
+          </div>
+        </div>
+        <div id="listeningBody"></div>
+      `;
+
+      const body = document.getElementById("listeningBody");
+      const item = getCurrentQueueItem("listening");
+      if (!item) {
+        renderEmptyFilterState(body);
+        return;
+      }
+
+      const q = state.queues["listening"];
+      const idx = state.queueIndex["listening"] || 0;
+
+      if (state.listeningMode === "mcq") {
+        const distractors = getDistractors(item, 3);
+        const options = shuffleArray([item, ...distractors]);
+        const letters = ["A", "B", "C", "D"];
+
+        body.innerHTML = `
+          <div class="exercise-shell">
+            <div class="exercise-topbar">
+              <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+              <span>Câu ${idx + 1} / ${q.length}</span>
+            </div>
+
+            <div class="prompt-box" style="align-items:center; text-align:center;">
+              <span class="prompt-label">Nhấn để nghe câu tiếng Anh và chọn nghĩa đúng</span>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:8px 0;">
+                <button class="btn" style="background:#ffffff; color:#0f172a;" onclick="speakById('${item.id}')">🔊 Phát âm thanh (${state.speechRate}x)</button>
+                <button class="btn btn-outline" style="background:#1e293b; color:#ffffff; border-color:#475569;" onclick="speakSlow('${item.id}')">🐢 Nghe chậm (0.7x)</button>
+              </div>
+            </div>
+
+            <div class="options-grid" id="listeningOptions">
+              ${options.map((opt, i) => `
+                <button class="option-btn" data-opt-id="${opt.id}" onclick="handleListeningChoice('${opt.id}', '${item.id}', this)">
+                  <span class="option-letter">${letters[i]}</span>
+                  <span>${escapeHtml(opt.vi)}</span>
+                </button>
+              `).join("")}
+            </div>
+
+            <div class="feedback-box" id="listeningFeedback"></div>
+
+            <div class="exercise-footer">
+              <button class="btn btn-outline btn-sm" onclick="reshuffleTab('listening')">Trộn lại danh sách</button>
+              <button class="btn btn-primary" onclick="nextExercise('listening')">Câu tiếp theo &rarr;</button>
+            </div>
+          </div>
+        `;
+      } else {
+        // Dictation Cloze mode
+        const words = item.en.split(" ");
+        // Pick a meaningful word (prefer >= 3 letters)
+        const candidates = words
+          .map((w, i) => ({ raw: w, clean: w.replace(/[^a-zA-Z0-9']/g, ""), idx: i }))
+          .filter(w => w.clean.length >= 2);
+        const chosen = candidates.length
+          ? candidates[Math.floor(Math.random() * candidates.length)]
+          : { raw: words[0], clean: words[0].replace(/[^a-zA-Z0-9']/g, ""), idx: 0 };
+
+        const maskedHtml = words.map((w, i) => {
+          if (i !== chosen.idx) return escapeHtml(w);
+          const lead = w.match(/^[^a-zA-Z0-9']*/)?.[0] || "";
+          const trail = w.match(/[^a-zA-Z0-9']*$/)?.[0] || "";
+          return `${escapeHtml(lead)}<span class="cloze-blank" id="clozeBlankDisplay">_____</span>${escapeHtml(trail)}`;
+        }).join(" ");
+
+        body.innerHTML = `
+          <div class="exercise-shell">
+            <div class="exercise-topbar">
+              <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+              <span>Câu ${idx + 1} / ${q.length}</span>
+            </div>
+
+            <div class="prompt-box" style="align-items:center; text-align:center;">
+              <span class="prompt-label">Nghe câu và điền chính xác từ còn thiếu vào chỗ trống</span>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:8px 0;">
+                <button class="btn" style="background:#ffffff; color:#0f172a;" onclick="speakById('${item.id}')">🔊 Phát âm thanh</button>
+                <button class="btn btn-outline" style="background:#1e293b; color:#ffffff; border-color:#475569;" onclick="speakSlow('${item.id}')">🐢 Nghe chậm (0.7x)</button>
+              </div>
+              <div class="prompt-sub">Gợi ý nghĩa: ${escapeHtml(item.vi)}</div>
+            </div>
+
+            <div class="cloze-sentence">${maskedHtml}</div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <input id="dictationInput" class="text-input-lg" style="flex:1; min-width:200px;" type="text" placeholder="Gõ từ còn thiếu rồi nhấn Enter..." autocomplete="off" />
+              <button class="btn btn-primary" onclick="checkDictation('${item.id}', '${escapeAttr(chosen.clean)}')">Kiểm tra</button>
+            </div>
+
+            <div class="feedback-box" id="dictationFeedback"></div>
+
+            <div class="exercise-footer">
+              <button class="btn btn-outline btn-sm" onclick="reshuffleTab('listening')">Trộn lại danh sách</button>
+              <button class="btn btn-primary" onclick="nextExercise('listening')">Câu tiếp theo &rarr;</button>
+            </div>
+          </div>
+        `;
+
+        const inputEl = document.getElementById("dictationInput");
+        inputEl.focus();
+        inputEl.addEventListener("keydown", e => {
+          if (e.key === "Enter") {
+            checkDictation(item.id, chosen.clean);
+          }
+        });
+      }
+
+      // Auto-play audio politely when entering listening question
+      setTimeout(() => speakText(item.en), 200);
+    }
+
+    window.setListeningMode = function (mode) {
+      state.listeningMode = mode;
+      renderListeningTab(document.getElementById("workspacePanel"));
+    };
+
+    window.speakSlow = function (id) {
+      const item = SENTENCES.find(s => s.id === id);
+      if (item) speakText(item.en, 0.7);
+    };
+
+    window.handleListeningChoice = function (chosenId, targetId, btnEl) {
+      const container = document.getElementById("listeningOptions");
+      if (!container || container.dataset.answered === "1") return;
+      container.dataset.answered = "1";
+
+      const isCorrect = chosenId === targetId;
+      const target = SENTENCES.find(s => s.id === targetId);
+      container.querySelectorAll(".option-btn").forEach(b => {
+        b.disabled = true;
+        if (b.dataset.optId === targetId) b.classList.add("correct");
+      });
+      if (!isCorrect) btnEl.classList.add("wrong");
+
+      recordAnswer(targetId, isCorrect);
+      if (isCorrect) playCorrectSound();
+      else playWrongSound();
+
+      const fb = document.getElementById("listeningFeedback");
+      fb.className = `feedback-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+      fb.innerHTML = `
+        <div class="feedback-title">${isCorrect ? "✓ Nghe chuẩn xác!" : "✕ Chưa chính xác!"}</div>
+        <div class="feedback-detail">
+          <div><strong>Câu gốc:</strong> ${escapeHtml(target.en)} <span style="color:#64748b;">${escapeHtml(target.ipa)}</span></div>
+          <div><strong>Nghĩa:</strong> ${escapeHtml(target.vi)}</div>
+        </div>
+      `;
+    };
+
+    window.checkDictation = function (targetId, expectedWord) {
+      const inputEl = document.getElementById("dictationInput");
+      const fb = document.getElementById("dictationFeedback");
+      if (!inputEl || inputEl.dataset.checked === "1") return;
+
+      const userVal = inputEl.value.trim();
+      if (!userVal) {
+        inputEl.focus();
+        return;
+      }
+
+      inputEl.dataset.checked = "1";
+      inputEl.disabled = true;
+
+      const cleanUser = userVal.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9']/g, "");
+      const cleanExp = expectedWord.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9']/g, "");
+      const isCorrect = cleanUser === cleanExp;
+
+      const blankSpan = document.getElementById("clozeBlankDisplay");
+      if (blankSpan) {
+        blankSpan.textContent = expectedWord;
+        blankSpan.style.color = isCorrect ? "#059669" : "#e11d48";
+      }
+
+      const target = SENTENCES.find(s => s.id === targetId);
+      recordAnswer(targetId, isCorrect);
+      if (isCorrect) playCorrectSound();
+      else playWrongSound();
+
+      fb.className = `feedback-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+      fb.innerHTML = `
+        <div class="feedback-title">${isCorrect ? "✓ Chính xác!" : `✕ Đáp án đúng là: "${escapeHtml(expectedWord)}"`}</div>
+        <div class="feedback-detail">
+          <div><strong>Câu đầy đủ:</strong> ${escapeHtml(target.en)} <span style="color:#64748b;">${escapeHtml(target.ipa)}</span></div>
+          <div><strong>Nghĩa:</strong> ${escapeHtml(target.vi)}</div>
+        </div>
+      `;
+    };
+
+    // -------------------- TAB 4: SPEAKING & SHADOWING --------------------
+    let activeRecognition = null;
+
+    function renderSpeakingTab(panel) {
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Kỹ năng Nói (Speaking & Shadowing)</h2>
+            <p>Nghe mẫu chuẩn bản xứ và bấm Micro để đọc đuổi (Shadowing), kiểm tra độ chính xác từng từ.</p>
+          </div>
+        </div>
+        <div id="speakingBody"></div>
+      `;
+
+      const body = document.getElementById("speakingBody");
+      const item = getCurrentQueueItem("speaking");
+      if (!item) {
+        renderEmptyFilterState(body);
+        return;
+      }
+
+      const q = state.queues["speaking"];
+      const idx = state.queueIndex["speaking"] || 0;
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      body.innerHTML = `
+        <div class="exercise-shell">
+          <div class="exercise-topbar">
+            <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+            <span>Câu ${idx + 1} / ${q.length}</span>
+          </div>
+
+          <div class="prompt-box">
+            <span class="prompt-label">Đọc to mẫu câu sau theo kỹ thuật Shadowing:</span>
+            <div class="prompt-text">${escapeHtml(item.en)}</div>
+            <div class="prompt-sub">${escapeHtml(item.ipa)} &bull; ${escapeHtml(item.vi)}</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
+              <button class="btn btn-sm" style="background:#ffffff; color:#0f172a;" onclick="speakById('${item.id}')">🔊 Nghe mẫu (${state.speechRate}x)</button>
+              <button class="btn btn-outline btn-sm" style="background:#1e293b; color:#ffffff; border-color:#475569;" onclick="speakSlow('${item.id}')">🐢 Nghe chậm (0.7x)</button>
+            </div>
+          </div>
+
+          <div class="speech-center">
+            ${SpeechRec
+              ? `<button id="micRecordBtn" class="mic-btn" onclick="toggleRecording('${item.id}')" title="Bấm để nói">
+                   <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                 </button>
+                 <div id="micStatus" style="font-weight:700; color:#334155;">Nhấn nút Micro và đọc câu tiếng Anh ở trên</div>`
+              : `<div style="color:#e11d48; font-weight:700;">Trình duyệt của bạn chưa hỗ trợ SpeechRecognition. Vui lòng dùng Google Chrome hoặc Microsoft Edge để chấm điểm phát âm trực tiếp, hoặc luyện đọc đuổi bằng nút "Nghe mẫu".</div>`
+            }
+          </div>
+
+          <div class="feedback-box" id="speakingFeedback"></div>
+
+          <div class="exercise-footer">
+            <button class="btn btn-outline btn-sm" onclick="reshuffleTab('speaking')">Trộn lại danh sách</button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline btn-sm" onclick="markSpeakingMastered('${item.id}')">✓ Đánh dấu đã thuộc</button>
+              <button class="btn btn-primary" onclick="nextExercise('speaking')">Câu tiếp theo &rarr;</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.markSpeakingMastered = function (id) {
+      recordAnswer(id, true);
+      playCorrectSound();
+      nextExercise("speaking");
+    };
+
+    window.toggleRecording = function (targetId) {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRec) return;
+
+      const btn = document.getElementById("micRecordBtn");
+      const status = document.getElementById("micStatus");
+
+      if (activeRecognition) {
+        activeRecognition.stop();
+        activeRecognition = null;
+        return;
+      }
+
+      const rec = new SpeechRec();
+      rec.lang = "en-US";
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+      activeRecognition = rec;
+
+      btn.classList.add("recording");
+      status.textContent = "Đang lắng nghe... Hãy đọc câu tiếng Anh rõ ràng!";
+
+      rec.onresult = event => {
+        const transcript = event.results[0][0].transcript;
+        evaluateSpeaking(targetId, transcript);
+      };
+
+      rec.onerror = event => {
+        status.textContent = `Lỗi thu âm (${event.error}). Hãy kiểm tra quyền Micro và thử lại.`;
+      };
+
+      rec.onend = () => {
+        btn.classList.remove("recording");
+        activeRecognition = null;
+        if (status.textContent.startsWith("Đang lắng nghe")) {
+          status.textContent = "Đã dừng thu âm. Nhấn Micro để thử lại.";
+        }
+      };
+
+      rec.start();
+    };
+
+    function evaluateSpeaking(targetId, transcript) {
+      const target = SENTENCES.find(s => s.id === targetId);
+      const status = document.getElementById("micStatus");
+      const fb = document.getElementById("speakingFeedback");
+      if (!target || !fb) return;
+
+      const expWords = expandContractions(target.en).split(" ").filter(Boolean);
+      const origDisplayWords = target.en.split(" ");
+      const spokenWords = expandContractions(transcript).split(" ").filter(Boolean);
+
+      // Compare each target word against spoken transcript
+      const origNormWords = normalizeText(target.en).split(" ").filter(Boolean);
+      let matchedCount = 0;
+
+      const wordBadges = origDisplayWords.map((w, i) => {
+        const cleanW = normalizeText(w);
+        const expandedParts = expandContractions(w).split(" ");
+        const isHit = spokenWords.includes(cleanW) || expandedParts.every(p => spokenWords.includes(p));
+        if (isHit) matchedCount++;
+        return `<span class="${isHit ? "diff-ok" : "diff-miss"}">${escapeHtml(w)}</span>`;
+      });
+
+      const accuracy = Math.round((matchedCount / origDisplayWords.length) * 100);
+      const passed = accuracy >= 75;
+
+      status.textContent = `Bạn vừa nói: "${transcript}"`;
+      recordAnswer(targetId, passed);
+      if (passed) playCorrectSound();
+      else playWrongSound();
+
+      fb.className = `feedback-box show ${passed ? "is-correct" : "is-wrong"}`;
+      fb.innerHTML = `
+        <div class="feedback-title">${passed ? `✓ Xuất sắc! Độ chính xác: ${accuracy}%` : `✕ Độ chính xác: ${accuracy}% — Hãy nghe mẫu và thử đọc lại nhé!`}</div>
+        <div class="feedback-detail">
+          <div><strong>Nhận diện được:</strong> "${escapeHtml(transcript)}"</div>
+          <div class="word-diff">${wordBadges.join("")}</div>
+        </div>
+      `;
+    }
+
+    // -------------------- TAB 5: WRITING & SENTENCE BUILDING --------------------
+    let scrambleState = {
+      itemId: null,
+      bank: [],       // [{ uid, text, used }]
+      tray: []        // [{ uid, text }]
+    };
+
+    function renderWritingTab(panel) {
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Kỹ năng Viết (Writing & Sentence Building)</h2>
+            <p>Sắp xếp từ thành câu hoàn chỉnh hoặc gõ lại câu tiếng Anh từ nghĩa tiếng Việt.</p>
+          </div>
+          <div class="submode-bar">
+            <button class="pill-btn ${state.writingMode === "scramble" ? "active" : ""}" onclick="setWritingMode('scramble')">Sắp xếp từ</button>
+            <button class="pill-btn ${state.writingMode === "typing" ? "active" : ""}" onclick="setWritingMode('typing')">Gõ câu hoàn chỉnh</button>
+          </div>
+        </div>
+        <div id="writingBody"></div>
+      `;
+
+      const body = document.getElementById("writingBody");
+      const item = getCurrentQueueItem("writing");
+      if (!item) {
+        renderEmptyFilterState(body);
+        return;
+      }
+
+      const q = state.queues["writing"];
+      const idx = state.queueIndex["writing"] || 0;
+
+      if (state.writingMode === "scramble") {
+        if (scrambleState.itemId !== item.id) {
+          const tokens = item.en.split(" ");
+          let shuffled = shuffleArray(tokens.map((t, i) => ({ uid: `${item.id}_${i}`, text: t, used: false })));
+          // Avoid already-sorted order for sentences with >= 3 words
+          if (tokens.length >= 3 && shuffled.map(x => x.text).join(" ") === item.en) {
+            shuffled = shuffleArray(shuffled);
+          }
+          scrambleState = { itemId: item.id, bank: shuffled, tray: [] };
+        }
+
+        body.innerHTML = `
+          <div class="exercise-shell">
+            <div class="exercise-topbar">
+              <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+              <span>Câu ${idx + 1} / ${q.length}</span>
+            </div>
+
+            <div class="prompt-box">
+              <span class="prompt-label">Sắp xếp các từ dưới đây thành câu tiếng Anh hoàn chỉnh:</span>
+              <div class="prompt-text">${escapeHtml(item.vi)}</div>
+              <div style="margin-top:4px;">
+                <button class="btn btn-outline btn-sm" style="background:#1e293b;color:#fff;border-color:#475569;" onclick="speakById('${item.id}')">🔊 Nghe gợi ý</button>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:0.8rem; font-weight:700; color:#475569; margin-bottom:6px;">CÂU CỦA BẠN (Bấm vào từ để đưa xuống lại):</div>
+              <div class="answer-tray" id="scrambleTray"></div>
+            </div>
+
+            <div>
+              <div style="font-size:0.8rem; font-weight:700; color:#475569; margin-bottom:6px;">KHO TỪ (Bấm để chọn):</div>
+              <div class="word-bank" id="scrambleBank"></div>
+            </div>
+
+            <div class="feedback-box" id="scrambleFeedback"></div>
+
+            <div class="exercise-footer">
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-outline btn-sm" onclick="resetScrambleTray()">Xóa làm lại</button>
+                <button class="btn btn-outline btn-sm" onclick="reshuffleTab('writing')">Trộn danh sách</button>
+              </div>
+              <button class="btn btn-primary" onclick="nextWriting()">Câu tiếp theo &rarr;</button>
+            </div>
+          </div>
+        `;
+        renderScrambleChips(item);
+      } else {
+        // Translation Typing mode
+        body.innerHTML = `
+          <div class="exercise-shell">
+            <div class="exercise-topbar">
+              <span class="context-tag">Unit ${item.unit} &bull; ${escapeHtml(item.secName)}</span>
+              <span>Câu ${idx + 1} / ${q.length}</span>
+            </div>
+
+            <div class="prompt-box">
+              <span class="prompt-label">Nhìn nghĩa tiếng Việt và gõ lại chính xác câu tiếng Anh:</span>
+              <div class="prompt-text">${escapeHtml(item.vi)}</div>
+              <div class="prompt-sub">Ngữ cảnh: ${escapeHtml(item.secName)}</div>
+              <div style="margin-top:4px; display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn btn-outline btn-sm" style="background:#1e293b;color:#fff;border-color:#475569;" onclick="speakById('${item.id}')">🔊 Nghe gợi ý</button>
+                <button class="btn btn-outline btn-sm" style="background:#1e293b;color:#fff;border-color:#475569;" onclick="toggleIpaHint('${escapeAttr(item.ipa)}')">👁️ Xem phiên âm IPA</button>
+              </div>
+              <div id="typingIpaHint" style="display:none; color:#cbd5e1; font-size:0.95rem; margin-top:4px;"></div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <input id="writingTypingInput" class="text-input-lg" style="flex:1; min-width:220px;" type="text" placeholder="Gõ câu tiếng Anh đầy đủ rồi nhấn Enter..." autocomplete="off" />
+              <button class="btn btn-primary" onclick="checkTypingSentence('${item.id}')">Kiểm tra</button>
+            </div>
+
+            <div class="feedback-box" id="typingFeedback"></div>
+
+            <div class="exercise-footer">
+              <button class="btn btn-outline btn-sm" onclick="reshuffleTab('writing')">Trộn danh sách</button>
+              <button class="btn btn-primary" onclick="nextWriting()">Câu tiếp theo &rarr;</button>
+            </div>
+          </div>
+        `;
+
+        const inputEl = document.getElementById("writingTypingInput");
+        inputEl.focus();
+        inputEl.addEventListener("keydown", e => {
+          if (e.key === "Enter") checkTypingSentence(item.id);
+        });
+      }
+    }
+
+    function renderScrambleChips(item) {
+      const trayEl = document.getElementById("scrambleTray");
+      const bankEl = document.getElementById("scrambleBank");
+      if (!trayEl || !bankEl) return;
+
+      trayEl.innerHTML = scrambleState.tray.length
+        ? scrambleState.tray.map(t => `
+            <button class="word-chip in-tray" onclick="removeFromTray('${t.uid}')">${escapeHtml(t.text)}</button>
+          `).join("")
+        : `<span style="color:#94a3b8; font-size:0.88rem;">Hãy bấm vào các từ bên dưới theo đúng thứ tự...</span>`;
+
+      bankEl.innerHTML = scrambleState.bank.map(b => `
+        <button class="word-chip ${b.used ? "used" : ""}" onclick="addToTray('${b.uid}')">${escapeHtml(b.text)}</button>
+      `).join("");
+
+      // Auto-check immediately when all words are placed (Instant Feedback!)
+      if (scrambleState.tray.length === scrambleState.bank.length) {
+        const built = scrambleState.tray.map(x => x.text).join(" ");
+        const isCorrect = built === item.en;
+        recordAnswer(item.id, isCorrect);
+        if (isCorrect) playCorrectSound();
+        else playWrongSound();
+
+        const fb = document.getElementById("scrambleFeedback");
+        fb.className = `feedback-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+        fb.innerHTML = `
+          <div class="feedback-title">${isCorrect ? "✓ Chính xác hoàn toàn!" : "✕ Thứ tự chưa đúng!"}</div>
+          <div class="feedback-detail">
+            <div><strong>Đáp án chuẩn:</strong> ${escapeHtml(item.en)} <span style="color:#64748b;">${escapeHtml(item.ipa)}</span></div>
+            <div><strong>Nghĩa:</strong> ${escapeHtml(item.vi)}</div>
+          </div>
+          <div style="margin-top:4px;">
+            <button class="btn btn-outline btn-sm" onclick="speakById('${item.id}')">🔊 Nghe câu chuẩn</button>
+          </div>
+        `;
+      } else {
+        const fb = document.getElementById("scrambleFeedback");
+        if (fb) fb.className = "feedback-box";
+      }
+    }
+
+    window.addToTray = function (uid) {
+      const item = getCurrentQueueItem("writing");
+      if (!item || scrambleState.tray.length === scrambleState.bank.length) return;
+      const chip = scrambleState.bank.find(b => b.uid === uid);
+      if (!chip || chip.used) return;
+      chip.used = true;
+      scrambleState.tray.push({ uid: chip.uid, text: chip.text });
+      playPopSound();
+      renderScrambleChips(item);
+    };
+
+    window.removeFromTray = function (uid) {
+      const item = getCurrentQueueItem("writing");
+      if (!item) return;
+      scrambleState.tray = scrambleState.tray.filter(t => t.uid !== uid);
+      const chip = scrambleState.bank.find(b => b.uid === uid);
+      if (chip) chip.used = false;
+      playPopSound();
+      renderScrambleChips(item);
+    };
+
+    window.resetScrambleTray = function () {
+      const item = getCurrentQueueItem("writing");
+      if (!item) return;
+      scrambleState.bank.forEach(b => (b.used = false));
+      scrambleState.tray = [];
+      renderScrambleChips(item);
+    };
+
+    window.setWritingMode = function (mode) {
+      state.writingMode = mode;
+      scrambleState.itemId = null;
+      renderWritingTab(document.getElementById("workspacePanel"));
+    };
+
+    window.nextWriting = function () {
+      scrambleState.itemId = null;
+      nextExercise("writing");
+    };
+
+    window.toggleIpaHint = function (ipa) {
+      const el = document.getElementById("typingIpaHint");
+      if (!el) return;
+      if (el.style.display === "none") {
+        el.style.display = "block";
+        el.textContent = `IPA: ${ipa}`;
+      } else {
+        el.style.display = "none";
+      }
+    };
+
+    window.checkTypingSentence = function (targetId) {
+      const inputEl = document.getElementById("writingTypingInput");
+      const fb = document.getElementById("typingFeedback");
+      if (!inputEl || inputEl.dataset.checked === "1") return;
+
+      const val = inputEl.value.trim();
+      if (!val) {
+        inputEl.focus();
+        return;
+      }
+
+      inputEl.dataset.checked = "1";
+      inputEl.disabled = true;
+
+      const target = SENTENCES.find(s => s.id === targetId);
+      const isCorrect = normalizeText(val) === normalizeText(target.en);
+
+      recordAnswer(targetId, isCorrect);
+      if (isCorrect) playCorrectSound();
+      else playWrongSound();
+
+      fb.className = `feedback-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+      fb.innerHTML = `
+        <div class="feedback-title">${isCorrect ? "✓ Tuyệt vời! Bạn viết rất chính xác!" : "✕ Chưa khớp hoàn toàn! Hãy đối chiếu đáp án chuẩn:"}</div>
+        <div class="feedback-detail">
+          <div><strong>Bạn đã gõ:</strong> ${escapeHtml(val)}</div>
+          <div><strong>Đáp án chuẩn:</strong> ${escapeHtml(target.en)} <span style="color:#64748b;">${escapeHtml(target.ipa)}</span></div>
+        </div>
+        <div style="margin-top:4px;">
+          <button class="btn btn-outline btn-sm" onclick="speakById('${target.id}')">🔊 Nghe câu chuẩn</button>
+        </div>
+      `;
+    };
+
+    // =========================================================================
+    // 8. SHARED NAVIGATION & UTILITIES
+    // =========================================================================
+    window.nextExercise = function (tabKey) {
+      advanceQueue(tabKey);
+      renderActiveTab(false);
+    };
+
+    window.reshuffleTab = function (tabKey) {
+      ensureQueue(tabKey, true);
+      scrambleState.itemId = null;
+      playPopSound();
+      renderActiveTab(false);
+    };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function escapeAttr(str) {
+      return String(str).replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    }
+
+    // =========================================================================
+    // 9. EVENT LISTENERS & BOOTSTRAP
+    // =========================================================================
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (activeRecognition) {
+          activeRecognition.stop();
+          activeRecognition = null;
+        }
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.activeTab = btn.dataset.tab;
+        renderActiveTab(false);
+      });
+    });
+
+    document.getElementById("unitFilter").addEventListener("change", e => {
+      state.unitFilter = e.target.value;
+      populateSectionFilter();
+      renderActiveTab(true);
+    });
+
+    document.getElementById("sectionFilter").addEventListener("change", e => {
+      state.sectionFilter = e.target.value;
+      renderActiveTab(true);
+    });
+
+    document.getElementById("masteryFilter").addEventListener("change", e => {
+      state.masteryFilter = e.target.value;
+      renderActiveTab(true);
+    });
+
+    document.getElementById("speedBtn").addEventListener("click", () => {
+      state.speechRate = state.speechRate === 1.0 ? 0.75 : 1.0;
+      saveProgress();
+      updateHeaderControls();
+    });
+
+    document.getElementById("soundBtn").addEventListener("click", () => {
+      state.soundEnabled = !state.soundEnabled;
+      saveProgress();
+      updateHeaderControls();
+      if (state.soundEnabled) playPopSound();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Bạn có chắc muốn đặt lại toàn bộ tiến độ học tập về 0% không?")) {
+        state.progress = {};
+        saveProgress();
+        updateStatsBar();
+        renderActiveTab(true);
+      }
+    });
+
+    // Boot
+    loadProgress();
+    populateSectionFilter();
+    updateHeaderControls();
+    updateStatsBar();
+    renderActiveTab(true);
+  </script>
+</body>
+</html>
+
+Điểm nổi bật đã tích hợp đầy đủ:
+
+1.  Dữ liệu nguyên vẹn 100% (96/96 mẫu câu):
+      - Unit 1: Welcoming Students (40 câu, từ mục A đến F, câu 1 đến 40).
+      - Unit 2: Greeting Students Individually (56 câu, từ mục 1 đến 8, câu 1
+        đến 56).
+      - Giữ nguyên toàn bộ dấu câu, phiên âm IPA (US), nghĩa tiếng Việt và ngữ
+        cảnh từng mục.
+2.  4 Kỹ năng + Kho Flashcard:
+      - Kho Câu & Flashcard: Tìm kiếm nhanh, nghe phát âm, lật thẻ flashcard, tự
+        đánh dấu đã thuộc.
+      - Đọc (Reading): Nối câu Anh–Việt & Tình huống giao tiếp theo ngữ cảnh
+        sách, phản hồi tức thì không cần nút kiểm tra, tự động loại bỏ các
+        phương án trùng nghĩa/trùng câu.
+      - Nghe (Listening): Tự động đọc giọng bản xứ (en-US), nút nghe chậm 0.7x
+        và chuyển đổi tốc độ 0.75x / 1.0x, gồm 2 chế độ: Nghe chọn đáp án và
+        Nghe điền từ vào chỗ trống (Dictation).
+      - Nói (Speaking): Tích hợp SpeechRecognition nhận diện giọng nói trực tiếp
+        trên trình duyệt, chấm điểm phần trăm độ chính xác và tô xanh/đỏ từng từ
+        đã đọc đúng/sai.
+      - Viết (Writing): Sắp xếp từ (tự động kiểm tra ngay khi ghép từ cuối cùng)
+        và Gõ lại câu hoàn chỉnh có gợi ý IPA & âm thanh.
+3.  Âm thanh & Lưu tiến độ:
+      - Web Audio API tạo âm thanh vui nhộn khi đúng và nhẹ nhàng khi sai (có
+        nút Bật/Tắt tiếng).
+      - Lưu tiến độ tự động vào localStorage, lọc nhanh "Các câu làm sai / chưa
+        thuộc" để ôn tập lặp lại.
